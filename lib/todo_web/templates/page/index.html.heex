@@ -1,4 +1,8 @@
 <section class="phx-hero">
   <h1><%= gettext "Welcome to %{name}!", name: "Todo" %></h1>
   <p>A simple to-do app focused on usability</p>
+
+  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
+  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %>
+
 </section>
