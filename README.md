@@ -1,5 +1,7 @@
 # Todo
 
+Nobody ever said developers were good at naming things.
+
 ## Getting Started
 
 Here's how to run Todo on `localhost`:
