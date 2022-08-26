@@ -21,13 +21,6 @@ defmodule TodoWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-
-    live "/items", ItemLive.Index, :index
-    live "/items/new", ItemLive.Index, :new
-    live "/items/:id/edit", ItemLive.Index, :edit
-
-    live "/items/:id", ItemLive.Show, :show
-    live "/items/:id/show/edit", ItemLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
@@ -85,6 +78,13 @@ defmodule TodoWeb.Router do
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+
+    live "/items", ItemLive.Index, :index
+    live "/items/new", ItemLive.Index, :new
+    live "/items/:id/edit", ItemLive.Index, :edit
+
+    live "/items/:id", ItemLive.Show, :show
+    live "/items/:id/show/edit", ItemLive.Show, :edit
   end
 
   scope "/", TodoWeb do
