@@ -8,9 +8,13 @@ defmodule TodoWeb.ItemLiveTest do
   @update_attrs %{description: "some updated description"}
   @invalid_attrs %{description: nil}
 
-  defp create_item(_) do
-    item = item_fixture()
-    %{item: item}
+  defp create_item(params) do
+    logged_in_params = register_and_log_in_user(params)
+
+    item = item_fixture(%{user_id: logged_in_params.user.id})
+
+    logged_in_params |>
+      Enum.into(%{item: item})
   end
 
   describe "Index" do
