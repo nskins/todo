@@ -79,12 +79,14 @@ defmodule TodoWeb.Router do
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
 
-    live "/items", ItemLive.Index, :index
-    live "/items/new", ItemLive.Index, :new
-    live "/items/:id/edit", ItemLive.Index, :edit
+    live_session :user, on_mount: {TodoWeb.UserAuthLive, :user} do
+      live "/items", ItemLive.Index, :index
+      live "/items/new", ItemLive.Index, :new
+      live "/items/:id/edit", ItemLive.Index, :edit
 
-    live "/items/:id", ItemLive.Show, :show
-    live "/items/:id/show/edit", ItemLive.Show, :edit
+      live "/items/:id", ItemLive.Show, :show
+      live "/items/:id/show/edit", ItemLive.Show, :edit
+    end
   end
 
   scope "/", TodoWeb do
