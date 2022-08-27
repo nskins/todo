@@ -9,7 +9,8 @@ defmodule TodoWeb.UserAuthLive do
     if socket.assigns.current_user do
       {:cont, socket}
     else
-      {:halt, redirect(socket, to: "/login")}
+      # Maybe we can use the route helpers instead of hardcoding the path.
+      {:halt, redirect(socket, to: "/")}
     end
   end
 end
