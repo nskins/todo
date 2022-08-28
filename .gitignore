@@ -32,3 +32,5 @@ todo-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# My local to-do list for working on this project.
+todo
