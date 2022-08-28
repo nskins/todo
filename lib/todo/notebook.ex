@@ -22,6 +22,22 @@ defmodule Todo.Notebook do
   end
 
   @doc """
+  Returns the list of items by user.
+
+  ## Examples
+
+      iex> list_items_by_user(2)
+      [%Item{}, ...]
+
+  """
+  def list_items_by_user(user_id) do
+    query = from i in Item,
+            where: i.user_id == ^user_id
+
+    Repo.all(query)
+  end
+
+  @doc """
   Gets a single item.
 
   Raises `Ecto.NoResultsError` if the Item does not exist.

@@ -6,7 +6,9 @@ defmodule TodoWeb.ItemLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :items, list_items())}
+    user_id = socket.assigns.current_user.id
+
+    {:ok, assign(socket, :items, list_items(user_id))}
   end
 
   @impl true
@@ -37,10 +39,12 @@ defmodule TodoWeb.ItemLive.Index do
     item = Notebook.get_item!(id)
     {:ok, _} = Notebook.delete_item(item)
 
-    {:noreply, assign(socket, :items, list_items())}
+    user_id = socket.assigns.current_user.id
+
+    {:noreply, assign(socket, :items, list_items(user_id))}
   end
 
-  defp list_items do
-    Notebook.list_items()
+  defp list_items(user_id) do
+    Notebook.list_items_by_user(user_id)
   end
 end
