@@ -12,9 +12,9 @@ defmodule Todo.NotebookTest do
 
     setup [:register_and_log_in_user]
 
-    test "list_items/0 returns all items", %{user: user} do
+    test "list_items_by_user/1 returns all of the user's items", %{user: user} do
       item = item_fixture(%{user_id: user.id})
-      assert Notebook.list_items() == [item]
+      assert Notebook.list_items_by_user(user.id) == [item]
     end
 
     test "get_item!/1 returns the item with given id", %{user: user} do
