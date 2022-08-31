@@ -31,14 +31,20 @@ defmodule Todo.Notebook do
 
   ## Examples
 
-      iex> get_item!(123)
+      iex> get_item!(123, 5)
       %Item{}
 
-      iex> get_item!(456)
+      iex> get_item!(456, 5)
       ** (Ecto.NoResultsError)
 
   """
-  def get_item!(id), do: Repo.get!(Item, id)
+  def get_item!(id, user_id) do
+    item = Repo.get!(Item, id)
+
+    %Item{ user_id: ^user_id } = item
+
+    item
+  end
 
   @doc """
   Creates a item.

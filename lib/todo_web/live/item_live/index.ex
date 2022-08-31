@@ -17,9 +17,11 @@ defmodule TodoWeb.ItemLive.Index do
   end
 
   defp apply_action(socket, :edit, %{"id" => id}) do
+    user_id = socket.assigns.current_user.id
+
     socket
     |> assign(:page_title, "Edit Item")
-    |> assign(:item, Notebook.get_item!(id))
+    |> assign(:item, Notebook.get_item!(id, user_id))
   end
 
   defp apply_action(socket, :new, _params) do
@@ -36,10 +38,10 @@ defmodule TodoWeb.ItemLive.Index do
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    item = Notebook.get_item!(id)
-    {:ok, _} = Notebook.delete_item(item)
-
     user_id = socket.assigns.current_user.id
+
+    item = Notebook.get_item!(id, user_id)
+    {:ok, _} = Notebook.delete_item(item)
 
     {:noreply, assign(socket, :items, list_items(user_id))}
   end
