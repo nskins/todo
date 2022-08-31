@@ -54,16 +54,23 @@ defmodule Todo.Notebook do
   @doc """
   Creates a item.
 
+  Raises `MatchError` if the User is not authorized to create the Item.
+
   ## Examples
 
-      iex> create_item(%{field: value})
+      iex> create_item(5, %{field: value})
       {:ok, %Item{}}
 
-      iex> create_item(%{field: bad_value})
+      iex> create_item(5, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
+      iex> create_item(6, %{user_id: 5})
+      ** (MatchError)
+
   """
-  def create_item(attrs \\ %{}) do
+  def create_item(user_id, attrs \\ %{}) do
+    %{ "user_id" => ^user_id } = attrs
+
     %Item{}
     |> Item.changeset(attrs)
     |> Repo.insert()

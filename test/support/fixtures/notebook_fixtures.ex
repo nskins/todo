@@ -8,12 +8,15 @@ defmodule Todo.NotebookFixtures do
   Generate a item.
   """
   def item_fixture(attrs \\ %{}) do
-    {:ok, item} =
+    %{ "user_id" => user_id } = attrs
+
+    combined_attrs =
       attrs
       |> Enum.into(%{
-        description: "some description"
+        "description" => "some description"
       })
-      |> Todo.Notebook.create_item()
+
+    {:ok, item} = Todo.Notebook.create_item(user_id, combined_attrs)
 
     item
   end

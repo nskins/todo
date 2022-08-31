@@ -41,7 +41,11 @@ defmodule TodoWeb.ItemLive.FormComponent do
   end
 
   defp save_item(socket, :new, item_params) do
-    case Notebook.create_item(item_params) do
+    user_id = socket.assigns.current_user.id
+
+    new_params = Map.put(item_params, "user_id", String.to_integer(item_params["user_id"]))
+
+    case Notebook.create_item(user_id, new_params) do
       {:ok, _item} ->
         {:noreply,
          socket

@@ -11,7 +11,7 @@ defmodule TodoWeb.ItemLiveTest do
   defp create_item(params) do
     logged_in_params = register_and_log_in_user(params)
 
-    item = item_fixture(%{user_id: logged_in_params.user.id})
+    item = item_fixture(%{"user_id" => logged_in_params.user.id})
 
     logged_in_params |>
       Enum.into(%{item: item})
