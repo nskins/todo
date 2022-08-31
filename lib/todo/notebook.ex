@@ -29,6 +29,8 @@ defmodule Todo.Notebook do
 
   Raises `Ecto.NoResultsError` if the Item does not exist.
 
+  Raises `MatchError` if the User is not authorized to access the Item.
+
   ## Examples
 
       iex> get_item!(123, 5)
@@ -36,6 +38,9 @@ defmodule Todo.Notebook do
 
       iex> get_item!(456, 5)
       ** (Ecto.NoResultsError)
+
+      iex> get_item!(312, 6)
+      ** (MatchError)
 
   """
   def get_item!(id, user_id) do
