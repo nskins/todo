@@ -19,7 +19,7 @@ defmodule Todo.NotebookTest do
 
     test "get_item!/1 returns the item with given id", %{user: user} do
       item = item_fixture(%{user_id: user.id})
-      assert Notebook.get_item!(item.id) == item
+      assert Notebook.get_item!(item.id, user.id) == item
     end
 
     test "create_item/1 with valid data creates a item", %{user: user} do
@@ -44,13 +44,13 @@ defmodule Todo.NotebookTest do
     test "update_item/2 with invalid data returns error changeset", %{user: user} do
       item = item_fixture(%{user_id: user.id})
       assert {:error, %Ecto.Changeset{}} = Notebook.update_item(item, @invalid_attrs)
-      assert item == Notebook.get_item!(item.id)
+      assert item == Notebook.get_item!(item.id, user.id)
     end
 
     test "delete_item/1 deletes the item", %{user: user} do
       item = item_fixture(%{user_id: user.id})
       assert {:ok, %Item{}} = Notebook.delete_item(item)
-      assert_raise Ecto.NoResultsError, fn -> Notebook.get_item!(item.id) end
+      assert_raise Ecto.NoResultsError, fn -> Notebook.get_item!(item.id, user.id) end
     end
 
     test "change_item/1 returns a item changeset", %{user: user} do
