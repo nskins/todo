@@ -9,19 +9,6 @@ defmodule Todo.Notebook do
   alias Todo.Notebook.Item
 
   @doc """
-  Returns the list of items.
-
-  ## Examples
-
-      iex> list_items()
-      [%Item{}, ...]
-
-  """
-  def list_items do
-    Repo.all(Item)
-  end
-
-  @doc """
   Returns the list of items by user.
 
   ## Examples
