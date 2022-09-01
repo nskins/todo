@@ -79,16 +79,27 @@ defmodule Todo.Notebook do
   @doc """
   Updates a item.
 
+  Raises `MatchError` if the User is not authorized to update the Item.
+
   ## Examples
 
-      iex> update_item(item, %{field: new_value})
+      iex> update_item(5, item, %{field: new_value})
       {:ok, %Item{}}
 
-      iex> update_item(item, %{field: bad_value})
+      iex> update_item(5, item, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
+      iex> update_item(5, item, %{user_id: 6})
+
   """
-  def update_item(%Item{} = item, attrs) do
+  def update_item(user_id, %Item{} = item, attrs) do
+    # This ensures the original item belongs to the user.
+    %Item{ user_id: ^user_id } = item
+
+    # This ensures the user is not trying to
+    # update the item to belong to another user.
+    %{ "user_id" => ^user_id } = attrs
+
     item
     |> Item.changeset(attrs)
     |> Repo.update()
