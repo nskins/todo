@@ -1,6 +1,6 @@
 # Todo
 
-Nobody ever said developers were good at naming things.
+A multi-user to-do app focused on usability.
 
 ## Getting Started
 
