@@ -17,12 +17,6 @@ defmodule TodoWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", TodoWeb do
-    pipe_through :browser
-
-    get "/", PageController, :index
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", TodoWeb do
   #   pipe_through :api
@@ -62,6 +56,7 @@ defmodule TodoWeb.Router do
   scope "/", TodoWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
+    get "/", PageController, :index
     get "/users/register", UserRegistrationController, :new
     post "/users/register", UserRegistrationController, :create
     get "/users/log_in", UserSessionController, :new
