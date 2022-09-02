@@ -47,7 +47,7 @@ defmodule Todo.NotebookTest do
 
     test "delete_item/1 deletes the item", %{user: user} do
       item = item_fixture(%{"user_id" => user.id})
-      assert {:ok, %Item{}} = Notebook.delete_item(item)
+      assert {:ok, %Item{}} = Notebook.delete_item(user.id, item)
       assert_raise Ecto.NoResultsError, fn -> Notebook.get_item!(item.id, user.id) end
     end
 

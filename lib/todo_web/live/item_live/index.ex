@@ -41,7 +41,7 @@ defmodule TodoWeb.ItemLive.Index do
     user_id = socket.assigns.current_user.id
 
     item = Notebook.get_item!(id, user_id)
-    {:ok, _} = Notebook.delete_item(item)
+    {:ok, _} = Notebook.delete_item(user_id, item)
 
     {:noreply, assign(socket, :items, list_items(user_id))}
   end

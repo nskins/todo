@@ -90,6 +90,7 @@ defmodule Todo.Notebook do
       {:error, %Ecto.Changeset{}}
 
       iex> update_item(5, item, %{user_id: 6})
+      ** (MatchError)
 
   """
   def update_item(user_id, %Item{} = item, attrs) do
@@ -108,16 +109,24 @@ defmodule Todo.Notebook do
   @doc """
   Deletes a item.
 
+  Raises `MatchError` if the User is not authorized to delete the Item.
+
   ## Examples
 
-      iex> delete_item(item)
+      iex> delete_item(5, item)
       {:ok, %Item{}}
 
-      iex> delete_item(item)
+      iex> delete_item(5, item)
       {:error, %Ecto.Changeset{}}
 
+      iex> delete_item(6, item)
+      ** (MatchError)
+
   """
-  def delete_item(%Item{} = item) do
+  def delete_item(user_id, %Item{} = item) do
+    # This ensures the item belongs to the user.
+    %Item{ user_id: ^user_id } = item
+
     Repo.delete(item)
   end
 
