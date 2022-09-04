@@ -1,4 +1,4 @@
-# Todo
+# Todo ![CI](https://github.com/nskins/todo/actions/workflows/ci.yml/badge.svg)
 
 A multi-user to-do app focused on usability.
 
