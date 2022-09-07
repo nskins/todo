@@ -1,11 +1,11 @@
 <section class='bg-slate-100 h-screen flex flex-col items-center justify-center'>
-  <div>
-    <h1><%= gettext "%{name}", name: "Todo" %></h1>
+  <div class='text-7xl'>
+    <%= gettext "%{name}", name: "Todo" %>
   </div>
-  <p>A multi-user to-do app focused on usability</p>
+  <p class='m-2'>Finally. The best way to get things done.</p>
   <section class='flex flex-row'>
-    <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
-    <%= link "Register", to: Routes.user_registration_path(@conn, :new) %>
+    <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "bg-blue-700 p-3 m-2 rounded-lg text-white" %>
+    <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "bg-blue-700 p-3 m-2 rounded-lg text-white" %>
   </section>
 
 </section>
