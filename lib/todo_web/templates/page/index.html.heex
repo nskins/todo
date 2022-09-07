@@ -4,8 +4,8 @@
   </div>
   <p class='m-2'>Finally. The best way to get things done.</p>
   <section class='flex flex-row'>
-    <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "bg-blue-700 p-3 m-2 rounded-lg text-white" %>
-    <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "bg-blue-700 p-3 m-2 rounded-lg text-white" %>
+    <%= render "primary_button.html", text: "Log in", to: Routes.user_session_path(@conn, :new) %>
+    <%= render "primary_button.html", text: "Register", to: Routes.user_registration_path(@conn, :new) %>
   </section>
 
 </section>
