@@ -7,5 +7,9 @@
     <%= render "primary_button.html", text: "Log in", to: Routes.user_session_path(@conn, :new) %>
     <%= render "primary_button.html", text: "Register", to: Routes.user_registration_path(@conn, :new) %>
   </section>
+  <section class='flex md:flex-row flex-col'>
+    <%= render "sell_box.html", header: "Free and Open Source", content: "Licensed under the permissive MIT License." %>
+    <%= render "sell_box.html", header: "Privacy-Focused", content: "We'll never sell your personal information." %>
+  </section>
 
 </section>
