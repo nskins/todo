@@ -22,12 +22,10 @@
 
       <div class='m-2 flex flex-row'>
         <%= checkbox f, :remember_me, class: "mt-1 mr-1" %>
-        <%= label f, :remember_me, "Keep me logged in for 60 days", class: "" %>
+        <%= label f, :remember_me, "Remember me for 60 days", class: "" %>
       </div>
 
-      <div class='m-2'>
-        <%= submit "Log in" %>
-      </div>
+        <%= submit "Log in", class: "flex bg-blue-700 m-2 w-24 h-12 rounded-lg text-white text-center items-center justify-center" %>
     </.form>
 
     <p class='m-2'>
