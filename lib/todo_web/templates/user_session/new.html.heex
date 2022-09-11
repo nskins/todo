@@ -29,8 +29,8 @@
     </.form>
 
     <p class='m-2'>
-      <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+      <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "text-blue-500" %> |
+      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "text-blue-500" %>
     </p>
   </div>
 </section>
