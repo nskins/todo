@@ -11,13 +11,11 @@
       <% end %>
 
       <div class='m-2 flex flex-col'>
-        <%= label f, :email, class: "mb-1" %>
-        <%= email_input f, :email, required: true %>
+        <%= email_input f, :email, required: true, placeholder: "Email" %>
       </div>
 
       <div class='m-2 flex flex-col'>
-        <%= label f, :password, class: "mb-1" %>
-        <%= password_input f, :password, required: true %>
+        <%= password_input f, :password, required: true, placeholder: "Password" %>
       </div>
 
       <div class='m-2 flex flex-row'>
