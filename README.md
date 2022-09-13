@@ -4,15 +4,34 @@ This is the last straw. You just can't stand it anymore. You're tired of trying 
 
 Todo is the app that's here to save the day. It's free and open source software so you can easily deploy your own instance and have control over your own data. Isn't that awesome?! It's possible that there may even be an official deployment in the future. If that comes to be, our promise to you is that we'll never sell your personal data.
 
-## Getting Started
+## How to Build
 
-Here's how to run Todo on `localhost`:
+In order to build the application, you'll need to install the following software (if you haven't already):
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+- Elixir: https://elixir-lang.org/install.html
+- PostgreSQL: https://www.postgresql.org/download/
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Clone the repository and then navigate your terminal to the `todo` directory.
+
+You'll need to install application dependencies with the following command:
+
+```bash
+mix deps.get
+```
+
+Then you can setup a development database like this:
+
+```bash
+mix ecto.setup
+```
+
+Finally, you can fire up the server as such:
+
+```bash
+mix phx.server
+```
+
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser!!
 
 ## Database
 
