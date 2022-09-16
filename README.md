@@ -15,23 +15,35 @@ Clone the repository and then navigate your terminal to the `todo` directory.
 
 You'll need to install application dependencies with the following command:
 
-```bash
+```
 mix deps.get
 ```
 
 Then you can setup a development database like this:
 
-```bash
+```
 mix ecto.setup
 ```
 
 Finally, you can fire up the server as such:
 
-```bash
+```
 mix phx.server
 ```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser!!
+
+## Testing
+
+In this project, we utilize test-driven development to ensure that new features correctly handle our expected use cases. Therefore, it's usually a good idea to write a few tests for a new feature *before* we implement the feature. This also improves developer efficiency; if your test cases are thorough enough and passing, then your implementation is more likely to be correct!
+
+Our test suite consists of unit tests and integration tests. A unit test verifies the correctness of a function (without side effects). This means that, given some input, a function should always produce the same output. In contrast, integration tests allow us to test how our code interacts with its environment. This enables us to verify that our code behaves correctly given, say, the state of the database or the state of the browser.
+
+In order to run the test suite, just run the following command:
+
+```
+mix test
+```
 
 ## Database
 
