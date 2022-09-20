@@ -58,3 +58,7 @@ You can configure database connection parameters in the `/config` directory. Spe
 ## Deployment
 
 To learn how to deploy the app, please visit the [official documentation](https://hexdocs.pm/phoenix/deployment.html).
+
+## Architecture
+
+Todo is built on the standard MVC architecture common to most Phoenix applications. There is a very particular directory structure that indicates precisely where each different piece goes; [here](https://hexdocs.pm/phoenix/directory_structure.html) is more information if you'd like to learn more. In fact, I'd recommend reading through most of the [official Phoenix guides](https://hexdocs.pm/phoenix/overview.html) if you haven't already. Todo follows the recommended best practices given by that documentation... and honestly, the documentation is so good that it's going to be the best reference for any questions you have.
