@@ -45,6 +45,10 @@ In order to run the test suite, just run the following command:
 mix test
 ```
 
+## Continuous Delivery
+
+There is a GitHub Actions workflow that builds and tests the code on any pull request to the `main` branch. This helps us to prevent bugs from reaching `main` because the code must compile and pass test cases before a merge is allowed. If we ever setup an official instance, we could setup automatic deployment on pushes to `main`.
+
 ## Database
 
 Todo utilizes PostgreSQL for persistent storage. Here's a [really great tutorial](https://www.postgresql.org/docs/current/tutorial.html) for newbies.
