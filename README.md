@@ -51,8 +51,10 @@ There is a GitHub Actions workflow that builds and tests the code on any pull re
 
 ## Database
 
-Todo utilizes PostgreSQL for persistent storage. Here's a [really great tutorial](https://www.postgresql.org/docs/current/tutorial.html) for newbies.
+Todo utilizes [Ecto](https://github.com/elixir-ecto/ecto) to interact with PostgreSQL. To learn more about Ecto, please visit the [official documentation](https://hexdocs.pm/ecto/Ecto.html).
+
+You can configure database connection parameters in the `/config` directory. Specifically, you can update [dev.exs](config/dev.exs) for local development and [test.exs](config/test.exs) for the test environment. For the production environment, it is recommended to set the value `DATABASE_URL` in [runtime.exs](config/runtime.exs) as a system environment variable to protect the security of your credentials.
 
 ## Deployment
 
-Ready to run in production? Please [check the official guides](https://hexdocs.pm/phoenix/deployment.html).
+To learn how to deploy the app, please visit the [official documentation](https://hexdocs.pm/phoenix/deployment.html).
