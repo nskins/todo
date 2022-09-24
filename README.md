@@ -2,7 +2,9 @@
 
 This is the last straw. You just can't stand it anymore. You're tired of trying to scrawl down your to-do items on a piece of notebook paper with a pen that doesn't work. You've been doing this for such a long time because you really value your privacy. But wouldn't it be great if you could track everything with an app that empowers you to accomplish more?
 
-Todo is the app that's here to save the day. It's free and open source software so you can easily deploy your own instance and have control over your own data. Isn't that awesome?! It's possible that there may even be an official deployment in the future. If that comes to be, our promise to you is that we'll never sell your personal data.
+Todo is the app that's here to save the day. It's free and open source software so you can easily deploy your own instance and have control over your own data. Isn't that awesome?! Todo supports login for multiple users, so you could setup an instance for your family, workplace, etc.
+
+Why a to-do app? The author is working on this application in order to learn Phoenix LiveView and Tailwind CSS for web application development. A multi-user to-do app covers quite a bit of ground in learning a web framework.
 
 ## How to Build
 
