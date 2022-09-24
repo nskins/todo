@@ -1,26 +1,32 @@
-<h1>Register</h1>
+<section class='bg-slate-100 h-screen flex flex-col items-center justify-center'>
 
-<.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+  <div class='p-4 bg-white rounded-3xl shadow-2xl shadow-black'>
+
+    <div class='text-2xl m-2 font-bold'>Create an account</div>
+
+    <.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)} class='flex flex-col'>
+      <%= if @changeset.action do %>
+        <div class="alert alert-danger">
+          <p>Oops, something went wrong! Please check the errors below.</p>
+        </div>
+      <% end %>
+
+      <div class='m-2'>
+        <%= email_input f, :email, required: true, placeholder: "Email", autofocus: true %>
+        <%= error_tag f, :email %>
+      </div>
+
+      <div class='m-2'>
+        <%= password_input f, :password, required: true, placeholder: "Password" %>
+        <%= error_tag f, :password %>
+      </div>
+
+      <%= submit "Register", class: "bg-blue-700 m-2 w-24 h-12 rounded-lg text-white text-center" %>
+    </.form>
+
+    <div class='m-2'>
+      <%= render TodoWeb.SharedView, "easy_link.html", text: "Log in", to: Routes.user_session_path(@conn, :new) %> |
+      <%= render TodoWeb.SharedView, "easy_link.html", text: "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
     </div>
-  <% end %>
-
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-  <%= error_tag f, :email %>
-
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
-
-  <div>
-    <%= submit "Register" %>
   </div>
-</.form>
-
-<p>
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
-</p>
+</section>

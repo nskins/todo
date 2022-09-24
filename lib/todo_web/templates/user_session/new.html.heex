@@ -27,8 +27,8 @@
     </.form>
 
     <div class='m-2'>
-      <%= render "easy_link.html", text: "Register", to: Routes.user_registration_path(@conn, :new) %> |
-      <%= render "easy_link.html", text: "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+      <%= render TodoWeb.SharedView, "easy_link.html", text: "Register", to: Routes.user_registration_path(@conn, :new) %> |
+      <%= render TodoWeb.SharedView, "easy_link.html", text: "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
     </div>
   </div>
 </section>
