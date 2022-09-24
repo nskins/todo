@@ -2,7 +2,7 @@
 
   <div class='p-4 bg-white rounded-3xl shadow-2xl shadow-black'>
 
-    <div class='text-2xl m-2 font-bold'>Create an account</div>
+    <div class='text-2xl m-2 font-bold'>Register</div>
 
     <.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)} class='flex flex-col'>
       <%= if @changeset.action do %>
