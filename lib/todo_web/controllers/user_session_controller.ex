@@ -4,8 +4,10 @@ defmodule TodoWeb.UserSessionController do
   alias Todo.Accounts
   alias TodoWeb.UserAuth
 
+  plug :put_layout, {TodoWeb.LayoutView, "auth_form.html"}
+
   def new(conn, _params) do
-    render(conn, "new.html", error_message: nil)
+    render(conn, "new.html", error_message: nil, title: "Log in")
   end
 
   def create(conn, %{"user" => user_params}) do
@@ -15,7 +17,7 @@ defmodule TodoWeb.UserSessionController do
       UserAuth.log_in_user(conn, user, user_params)
     else
       # In order to prevent user enumeration attacks, don't disclose whether the email is registered.
-      render(conn, "new.html", error_message: "Invalid email or password")
+      render(conn, "new.html", error_message: "Invalid email or password", title: "Log in")
     end
   end
 

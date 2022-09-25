@@ -5,9 +5,11 @@ defmodule TodoWeb.UserRegistrationController do
   alias Todo.Accounts.User
   alias TodoWeb.UserAuth
 
+  plug :put_layout, {TodoWeb.LayoutView, "auth_form.html"}
+
   def new(conn, _params) do
     changeset = Accounts.change_user_registration(%User{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, title: "Register")
   end
 
   def create(conn, %{"user" => user_params}) do
@@ -24,7 +26,7 @@ defmodule TodoWeb.UserRegistrationController do
         |> UserAuth.log_in_user(user)
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, title: "Register")
     end
   end
 end
