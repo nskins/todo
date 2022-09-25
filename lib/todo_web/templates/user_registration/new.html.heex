@@ -15,7 +15,7 @@
     <%= error_tag f, :password %>
   </div>
 
-  <%= submit "Register", class: "bg-blue-700 m-2 w-24 h-12 rounded-lg text-white text-center" %>
+  <%= render TodoWeb.SharedView, "submit_button.html", text: "Register" %>
 </.form>
 
 <div class='m-2'>
