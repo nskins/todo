@@ -5,6 +5,7 @@ defmodule Todo.Notebook.Item do
   schema "items" do
     field :description, :string
     field :user_id, :id
+    field :status, Ecto.Enum, values: [:todo, :done]
 
     timestamps()
   end
@@ -12,7 +13,7 @@ defmodule Todo.Notebook.Item do
   @doc false
   def changeset(item, attrs) do
     item
-    |> cast(attrs, [:description, :user_id])
-    |> validate_required([:description, :user_id])
+    |> cast(attrs, [:description, :user_id, :status])
+    |> validate_required([:description, :user_id, :status])
   end
 end
