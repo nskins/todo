@@ -16,4 +16,11 @@ defmodule Todo.Notebook.Item do
     |> cast(attrs, [:description, :user_id, :status])
     |> validate_required([:description, :user_id, :status])
   end
+
+  def pretty_status(item) do
+    case item.status do
+      :todo -> "To Do"
+      :done -> "Done"
+    end
+  end
 end
