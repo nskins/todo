@@ -2,6 +2,7 @@ defmodule TodoWeb.ItemLive.Show do
   use TodoWeb, :live_view
 
   alias Todo.Notebook
+  alias Todo.Notebook.Item
 
   @impl true
   def mount(_params, _session, socket) do
