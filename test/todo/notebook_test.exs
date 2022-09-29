@@ -25,6 +25,7 @@ defmodule Todo.NotebookTest do
 
       assert {:ok, %Item{} = item} = Notebook.create_item(user.id, valid_attrs)
       assert item.description == "some description"
+      assert item.status == :todo
     end
 
     test "create_item/1 with invalid description returns error changeset", %{user: user} do
