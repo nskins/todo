@@ -27,8 +27,12 @@ defmodule Todo.NotebookTest do
       assert item.description == "some description"
     end
 
-    test "create_item/1 with invalid data returns error changeset", %{user: user} do
-      assert {:error, %Ecto.Changeset{}} = Notebook.create_item(user.id, %{"description" => nil, "user_id" => user.id})
+    test "create_item/1 with invalid description returns error changeset", %{user: user} do
+      assert {:error, %Ecto.Changeset{}} = Notebook.create_item(user.id, %{"description" => nil, "user_id" => user.id, "status" => :todo})
+    end
+
+    test "create_item/1 with invalid status returns error changeset", %{user: user} do
+      assert {:error, %Ecto.Changeset{}} = Notebook.create_item(user.id, %{"description" => "A valid description", "user_id" => user.id, "status" => :groggle})
     end
 
     test "update_item/2 with valid data updates the item", %{user: user} do
