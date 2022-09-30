@@ -1,15 +1,15 @@
-<h1>Forgot your password?</h1>
-
 <.form let={f} for={:user} action={Routes.user_reset_password_path(@conn, :create)}>
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
+  <div class='m-2'>
+    <%= email_input f, :email, required: true, placeholder: "Email", autofocus: true %>
+    <%= error_tag f, :email %>
+  </div>
 
   <div>
-    <%= submit "Send instructions to reset password" %>
+    <%= render TodoWeb.SharedView, "submit_button.html", text: "Reset" %>
   </div>
 </.form>
 
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
-</p>
+<div class='m-2'>
+  <%= render TodoWeb.SharedView, "easy_link.html", text: "Register", to: Routes.user_registration_path(@conn, :new) %> |
+  <%= render TodoWeb.SharedView, "easy_link.html", text: "Log in", to: Routes.user_session_path(@conn, :new) %>
+</div>
