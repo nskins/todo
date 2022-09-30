@@ -15,6 +15,10 @@
     <%= text_input f, :description %>
     <%= error_tag f, :description %>
 
+    <%= label f, :status %>
+    <%= select f, :status, ["To Do": :todo, "Done": :done] %>
+    <%= error_tag f, :status %>
+
     <div>
       <%= submit "Save", phx_disable_with: "Saving..." %>
     </div>

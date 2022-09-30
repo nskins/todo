@@ -21,17 +21,22 @@ defmodule Todo.NotebookTest do
     end
 
     test "create_item/1 with valid data creates a item", %{user: user} do
-      valid_attrs = %{ "description" => "some description", "user_id" => user.id}
+      valid_attrs = %{ "description" => "some description", "user_id" => user.id, "status" => :todo}
 
       assert {:ok, %Item{} = item} = Notebook.create_item(user.id, valid_attrs)
       assert item.description == "some description"
+      assert item.status == :todo
     end
 
-    test "create_item/1 with invalid data returns error changeset", %{user: user} do
-      assert {:error, %Ecto.Changeset{}} = Notebook.create_item(user.id, %{"description" => nil, "user_id" => user.id})
+    test "create_item/1 with invalid description returns error changeset", %{user: user} do
+      assert {:error, %Ecto.Changeset{}} = Notebook.create_item(user.id, %{"description" => nil, "user_id" => user.id, "status" => :todo})
     end
 
-    test "update_item/2 with valid data updates the item", %{user: user} do
+    test "create_item/1 with invalid status returns error changeset", %{user: user} do
+      assert {:error, %Ecto.Changeset{}} = Notebook.create_item(user.id, %{"description" => "A valid description", "user_id" => user.id, "status" => :groggle})
+    end
+
+    test "update_item/2 with valid description updates the item", %{user: user} do
       item = item_fixture(%{"user_id" => user.id})
       update_attrs = %{"description" => "some updated description", "user_id" => user.id}
 
@@ -39,9 +44,23 @@ defmodule Todo.NotebookTest do
       assert item.description == "some updated description"
     end
 
-    test "update_item/2 with invalid data returns error changeset", %{user: user} do
+    test "update_item/2 with valid status updates the item", %{user: user} do
+      item = item_fixture(%{"user_id" => user.id})
+      update_attrs = %{"status" => :done, "user_id" => user.id}
+
+      assert {:ok, %Item{} = item} = Notebook.update_item(user.id, item, update_attrs)
+      assert item.status == :done
+    end
+
+    test "update_item/2 with invalid description returns error changeset", %{user: user} do
       item = item_fixture(%{"user_id" => user.id})
       assert {:error, %Ecto.Changeset{}} = Notebook.update_item(user.id, item, %{"description" => nil, "user_id" => user.id})
+      assert item == Notebook.get_item!(item.id, user.id)
+    end
+
+    test "update_item/2 with invalid status returns error changeset", %{user: user} do
+      item = item_fixture(%{"user_id" => user.id})
+      assert {:error, %Ecto.Changeset{}} = Notebook.update_item(user.id, item, %{"status" => nil, "user_id" => user.id})
       assert item == Notebook.get_item!(item.id, user.id)
     end
 

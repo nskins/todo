@@ -20,6 +20,10 @@
     <strong>Description:</strong>
     <%= @item.description %>
   </li>
+  <li>
+    <strong>Status:</strong>
+    <%= Item.pretty_status(@item) %>
+  </li>
 
 </ul>
 

@@ -13,7 +13,8 @@ defmodule Todo.NotebookFixtures do
     combined_attrs =
       attrs
       |> Enum.into(%{
-        "description" => "some description"
+        "description" => "some description",
+        "status" => :done
       })
 
     {:ok, item} = Todo.Notebook.create_item(user_id, combined_attrs)
