@@ -10,7 +10,7 @@ defmodule TodoWeb.ItemLive.Index do
 
     if connected?(socket), do: Notebook.subscribe()
 
-    {:ok, assign(socket, :items, list_items(user_id))}
+    {:ok, assign(socket, :items, list_items(user_id)), temporary_assigns: [items: []]}
   end
 
   @impl true
@@ -50,6 +50,10 @@ defmodule TodoWeb.ItemLive.Index do
 
   @impl true
   def handle_info({:item_created, item}, socket) do
+    {:noreply, update(socket, :items, fn items -> [item | items] end)}
+  end
+
+  def handle_info({:item_updated, item}, socket) do
     {:noreply, update(socket, :items, fn items -> [item | items] end)}
   end
 
