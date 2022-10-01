@@ -75,7 +75,7 @@ defmodule Todo.Notebook do
     %Item{}
     |> Item.changeset(attrs)
     |> Repo.insert()
-    |> broadcast(:item_created)
+    |> broadcast({:item_created, user_id})
   end
 
   @doc """
@@ -106,7 +106,7 @@ defmodule Todo.Notebook do
     item
     |> Item.changeset(attrs)
     |> Repo.update()
-    |> broadcast(:item_updated)
+    |> broadcast({:item_updated, user_id})
   end
 
   @doc """
@@ -132,7 +132,7 @@ defmodule Todo.Notebook do
 
     item
     |> Repo.delete()
-    |> broadcast(:item_deleted)
+    |> broadcast({:item_deleted, user_id})
   end
 
   @doc """
@@ -148,13 +148,15 @@ defmodule Todo.Notebook do
     Item.changeset(item, attrs)
   end
 
-  def subscribe do
-    Phoenix.PubSub.subscribe(Todo.PubSub, "items")
+  defp items_topic(user_id), do: "items: " <> to_string(user_id)
+  
+  def subscribe(user_id) do
+    Phoenix.PubSub.subscribe(Todo.PubSub, items_topic(user_id))
   end
 
   defp broadcast({:error, _reason} = error, _event), do: error
-  defp broadcast({:ok, item}, event) do
-    Phoenix.PubSub.broadcast(Todo.PubSub, "items", {event, item})
+  defp broadcast({:ok, item}, {event, user_id}) do
+    Phoenix.PubSub.broadcast(Todo.PubSub, items_topic(user_id), {event, item})
     {:ok, item}
   end
 

@@ -8,7 +8,7 @@ defmodule TodoWeb.ItemLive.Index do
   def mount(_params, _session, socket) do
     user_id = socket.assigns.current_user.id
 
-    if connected?(socket), do: Notebook.subscribe()
+    if connected?(socket), do: Notebook.subscribe(user_id)
 
     {:ok, assign(socket, :items, list_items(user_id))}
   end
