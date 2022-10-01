@@ -43,7 +43,7 @@ defmodule TodoWeb.UserResetPasswordController do
         |> redirect(to: Routes.user_session_path(conn, :new))
 
       {:error, changeset} ->
-        render(conn, "edit.html", changeset: changeset)
+        render(conn, "edit.html", changeset: changeset, title: "Reset password")
     end
   end
 
