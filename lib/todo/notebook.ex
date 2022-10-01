@@ -130,7 +130,9 @@ defmodule Todo.Notebook do
     # This ensures the item belongs to the user.
     %Item{ user_id: ^user_id } = item
 
-    Repo.delete(item)
+    item
+    |> Repo.delete()
+    |> broadcast(:item_deleted)
   end
 
   @doc """
