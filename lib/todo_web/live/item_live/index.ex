@@ -45,7 +45,7 @@ defmodule TodoWeb.ItemLive.Index do
     item = Notebook.get_item!(id, user_id)
     {:ok, _} = Notebook.delete_item(user_id, item)
 
-    {:noreply, assign(socket, :items, list_items(user_id))}
+    {:noreply, socket}
   end
 
   @impl true
@@ -68,9 +68,18 @@ defmodule TodoWeb.ItemLive.Index do
   defp update_items(operation, items, item) do
     index = Enum.find_index(items, fn i -> item.id == i.id end)
 
-    case operation do
-      :replace -> List.replace_at(items, index, item)
-      :remove -> List.delete_at(items, index)
+    # If the event occurs on the same browser instance that
+    # performed the action, we will have already reloaded
+    # the items from the update/delete event.
+    case index do
+      nil -> items
+      i ->
+        case operation do
+          :replace -> List.replace_at(items, i, item)
+          :remove -> List.delete_at(items, i)
+        end
     end
+
+
   end
 end
