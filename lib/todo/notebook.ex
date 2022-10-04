@@ -19,7 +19,8 @@ defmodule Todo.Notebook do
   """
   def list_items_by_user(user_id) do
     query = from i in Item,
-            where: i.user_id == ^user_id
+            where: i.user_id == ^user_id,
+            order_by: [desc: i.id]
 
     Repo.all(query)
   end
@@ -74,6 +75,7 @@ defmodule Todo.Notebook do
     %Item{}
     |> Item.changeset(attrs)
     |> Repo.insert()
+    |> broadcast({:item_created, user_id})
   end
 
   @doc """
@@ -104,6 +106,7 @@ defmodule Todo.Notebook do
     item
     |> Item.changeset(attrs)
     |> Repo.update()
+    |> broadcast({:item_updated, user_id})
   end
 
   @doc """
@@ -127,7 +130,9 @@ defmodule Todo.Notebook do
     # This ensures the item belongs to the user.
     %Item{ user_id: ^user_id } = item
 
-    Repo.delete(item)
+    item
+    |> Repo.delete()
+    |> broadcast({:item_deleted, user_id})
   end
 
   @doc """
@@ -142,4 +147,17 @@ defmodule Todo.Notebook do
   def change_item(%Item{} = item, attrs \\ %{}) do
     Item.changeset(item, attrs)
   end
+
+  defp items_topic(user_id), do: "items: " <> to_string(user_id)
+  
+  def subscribe(user_id) do
+    Phoenix.PubSub.subscribe(Todo.PubSub, items_topic(user_id))
+  end
+
+  defp broadcast({:error, _reason} = error, _event), do: error
+  defp broadcast({:ok, item}, {event, user_id}) do
+    Phoenix.PubSub.broadcast(Todo.PubSub, items_topic(user_id), {event, item})
+    {:ok, item}
+  end
+
 end

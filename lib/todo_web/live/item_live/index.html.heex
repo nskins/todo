@@ -22,7 +22,7 @@
       <th></th>
     </tr>
   </thead>
-  <tbody id="items">
+  <tbody id="items" phx-update="replace">
     <%= for item <- @items do %>
       <tr id={"item-#{item.id}"}>
         <td><%= item.description %></td>
