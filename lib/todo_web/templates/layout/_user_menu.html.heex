@@ -1,7 +1,7 @@
-<ul>
+<section class="text-right">
 <%= if @current_user do %>
-  <li><%= @current_user.email %></li>
-  <li><%= link "Settings", to: Routes.user_settings_path(@conn, :edit) %></li>
-  <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %></li>
+  <div><%= @current_user.email %></div>
+  <div><%= link "Settings", to: Routes.user_settings_path(@conn, :edit) %></div>
+  <div><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %></div>
 <% end %>
-</ul>
+</section>
