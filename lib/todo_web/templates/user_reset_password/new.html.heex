@@ -1,4 +1,4 @@
-<.form let={f} for={:user} action={Routes.user_reset_password_path(@conn, :create)}>
+<.form let={f} for={:user} action={Routes.user_reset_password_path(@conn, :create)} class='flex flex-col'>
   <div class='m-2'>
     <%= email_input f, :email, required: true, placeholder: "Email", autofocus: true %>
     <%= error_tag f, :email %>
