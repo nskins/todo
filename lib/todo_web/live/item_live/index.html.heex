@@ -1,4 +1,4 @@
-<div class='text-2xl m-2 font-bold'>Listing Items</div>
+<div class='text-2xl m-2 font-bold'>To-do Items</div>
 
 <%= if @live_action in [:new, :edit] do %>
   <.modal return_to={Routes.item_index_path(@socket, :index)}>
