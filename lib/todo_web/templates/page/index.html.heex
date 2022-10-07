@@ -12,4 +12,6 @@
     <%= render "sell_box.html", header: "Privacy-Focused", content: "We'll never sell your personal information." %>
   </section>
 
+  <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %> </p>
+
 </section>
