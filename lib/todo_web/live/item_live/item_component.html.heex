@@ -2,7 +2,6 @@
   <td><%= @item.description %></td>
   <td><%= Item.pretty_status(@item) %></td>
   <td>
-    <span><%= live_redirect "Show", to: Routes.item_show_path(@socket, :show, @item) %></span>
     <span><%= live_patch "Edit", to: Routes.item_index_path(@socket, :edit, @item) %></span>
     <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: @item.id, data: [confirm: "Are you sure?"] %></span>
   </td>

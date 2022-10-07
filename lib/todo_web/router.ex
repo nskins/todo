@@ -78,9 +78,6 @@ defmodule TodoWeb.Router do
       live "/items", ItemLive.Index, :index
       live "/items/new", ItemLive.Index, :new
       live "/items/:id/edit", ItemLive.Index, :edit
-
-      live "/items/:id", ItemLive.Show, :show
-      live "/items/:id/show/edit", ItemLive.Show, :edit
     end
   end
 
