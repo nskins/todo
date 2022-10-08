@@ -16,13 +16,6 @@
   <% end %>
 
   <table>
-    <thead>
-      <tr>
-        <th>Description</th>
-        <th>Status</th>
-        <th></th>
-      </tr>
-    </thead>
     <tbody id="items" phx-update="replace">
       <%= for item <- @items do %>
         <.live_component module={ItemComponent} id={"item-#{item.id}"} item={item} />
