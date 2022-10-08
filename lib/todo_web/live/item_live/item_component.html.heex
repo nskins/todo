@@ -1,8 +1,11 @@
-<tr id={"item-#{@item.id}"}>
-  <td><%= @item.description %></td>
-  <td><%= Item.pretty_status(@item) %></td>
-  <td>
-    <span><%= live_patch "Edit", to: Routes.item_index_path(@socket, :edit, @item) %></span>
-    <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: @item.id, data: [confirm: "Are you sure?"] %></span>
-  </td>
-</tr>
+<div id={"item-#{@item.id}"} class='flex flex-col w-72 m-2 border-solid border-2'>
+  <div><%= @item.description %></div>
+  <div class='flex flex-row'>
+    <div class='justify-start'><%= Item.pretty_status(@item) %></div>
+    <div class='flex flex-row grow justify-end'>
+      <div><%= live_patch "Edit", to: Routes.item_index_path(@socket, :edit, @item) %></div>
+      <div class='text-right'><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: @item.id, data: [confirm: "Are you sure?"] %></div>
+    </div>
+
+  </div>
+</div>

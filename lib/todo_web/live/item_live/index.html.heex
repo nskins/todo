@@ -15,13 +15,11 @@
     </.modal>
   <% end %>
 
-  <table>
-    <tbody id="items" phx-update="replace">
-      <%= for item <- @items do %>
-        <.live_component module={ItemComponent} id={"item-#{item.id}"} item={item} />
-      <% end %>
-    </tbody>
-  </table>
+  <div id="items" phx-update="replace">
+    <%= for item <- @items do %>
+      <.live_component module={ItemComponent} id={"item-#{item.id}"} item={item} />
+    <% end %>
+  </div>
 
   <span><%= live_patch "New Item", to: Routes.item_index_path(@socket, :new) %></span>
 </section>
