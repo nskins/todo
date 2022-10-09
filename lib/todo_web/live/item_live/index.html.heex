@@ -1,6 +1,8 @@
 <section class='flex flex-col items-center justify-center'>
   <div class='text-2xl m-2 font-bold'>To-do Items</div>
 
+  <span><%= live_patch "Add New Item", to: Routes.item_index_path(@socket, :new) %></span>
+
   <%= if @live_action in [:new, :edit] do %>
     <.modal return_to={Routes.item_index_path(@socket, :index)}>
       <.live_component
@@ -20,6 +22,4 @@
       <.live_component module={ItemComponent} id={"item-#{item.id}"} item={item} />
     <% end %>
   </div>
-
-  <span><%= live_patch "New Item", to: Routes.item_index_path(@socket, :new) %></span>
 </section>
