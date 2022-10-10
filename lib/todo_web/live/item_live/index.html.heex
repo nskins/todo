@@ -17,7 +17,7 @@
     </.modal>
   <% end %>
 
-  <div id="items" phx-update="replace">
+  <div id="items" phx-update="replace" class='flex flex-row flex-wrap'>
     <%= for item <- @items do %>
       <.live_component module={ItemComponent} id={"item-#{item.id}"} item={item} />
     <% end %>
