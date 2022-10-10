@@ -1,4 +1,4 @@
-<div id={"item-#{@item.id}"} class='flex flex-col w-72 m-2 border-solid border-2'>
+<div id={"item-#{@item.id}"} class='flex flex-col w-1/2 md:w-1/4 lg:w-1/5 xl:w-1/6 m-2 border-solid border-2'>
   <div class='m-2'><%= @item.description %></div>
   <div class='flex flex-row'>
     <div class='justify-start m-2'><%= Item.pretty_status(@item) %></div>
