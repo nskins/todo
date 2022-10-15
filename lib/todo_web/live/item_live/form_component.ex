@@ -36,7 +36,6 @@ defmodule TodoWeb.ItemLive.FormComponent do
       {:ok, _item} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Item updated successfully")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -53,7 +52,6 @@ defmodule TodoWeb.ItemLive.FormComponent do
       {:ok, _item} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Item created successfully")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
