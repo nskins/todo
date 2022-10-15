@@ -1,39 +1,25 @@
-<h1>Listing Items</h1>
+<section class='flex flex-col items-center justify-center'>
+  <div class='text-2xl m-2 font-bold'>To-do Items</div>
 
-<%= if @live_action in [:new, :edit] do %>
-  <.modal return_to={Routes.item_index_path(@socket, :index)}>
-    <.live_component
-      module={TodoWeb.ItemLive.FormComponent}
-      id={@item.id || :new}
-      title={@page_title}
-      action={@live_action}
-      item={@item}
-      current_user={@current_user}
-      return_to={Routes.item_index_path(@socket, :index)}
-    />
-  </.modal>
-<% end %>
+  <span class='m-2'><%= live_patch "Add New Item", to: Routes.item_index_path(@socket, :new), class: "bg-blue-700 text-white p-2 rounded-md" %></span>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Status</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody id="items" phx-update="replace">
+  <%= if @live_action in [:new, :edit] do %>
+    <.modal return_to={Routes.item_index_path(@socket, :index)}>
+      <.live_component
+        module={TodoWeb.ItemLive.FormComponent}
+        id={@item.id || :new}
+        title={@page_title}
+        action={@live_action}
+        item={@item}
+        current_user={@current_user}
+        return_to={Routes.item_index_path(@socket, :index)}
+      />
+    </.modal>
+  <% end %>
+
+  <div id="items" phx-update="replace" class='flex flex-row flex-wrap justify-center w-full'>
     <%= for item <- @items do %>
-      <tr id={"item-#{item.id}"}>
-        <td><%= item.description %></td>
-        <td><%= Item.pretty_status(item) %></td>
-        <td>
-          <span><%= live_patch "Edit", to: Routes.item_index_path(@socket, :edit, item) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: item.id, data: [confirm: "Are you sure?"] %></span>
-        </td>
-      </tr>
+      <.live_component module={ItemComponent} id={"item-#{item.id}"} item={item} />
     <% end %>
-  </tbody>
-</table>
-
-<span><%= live_patch "New Item", to: Routes.item_index_path(@socket, :new) %></span>
+  </div>
+</section>
