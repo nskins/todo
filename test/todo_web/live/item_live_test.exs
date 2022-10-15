@@ -45,7 +45,6 @@ defmodule TodoWeb.ItemLiveTest do
         |> render_submit()
         |> follow_redirect(conn, Routes.item_index_path(conn, :index))
 
-      assert html =~ "Item created successfully"
       assert html =~ "some description"
     end
 
@@ -67,7 +66,6 @@ defmodule TodoWeb.ItemLiveTest do
         |> render_submit()
         |> follow_redirect(conn, Routes.item_index_path(conn, :index))
 
-      assert html =~ "Item updated successfully"
       assert html =~ "some updated description"
     end
 
