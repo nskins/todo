@@ -19,6 +19,10 @@
     <%= select f, :status, ["To Do": :todo, "Done": :done] %>
     <%= error_tag f, :status %>
 
+    <%= label f, :due_date %>
+    <%= date_select f, :due_date %>
+    <%= error_tag f, :due_date %>
+
     <div>
       <%= submit "Save", phx_disable_with: "Saving..." %>
     </div>
