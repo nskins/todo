@@ -14,8 +14,8 @@ defmodule Todo.Notebook.Item do
   @doc false
   def changeset(item, attrs) do
     item
-    |> cast(attrs, [:description, :user_id, :status, :date])
-    |> validate_required([:description, :user_id, :status, :date])
+    |> cast(attrs, [:description, :user_id, :status, :due_date])
+    |> validate_required([:description, :user_id, :status, :due_date])
   end
 
   def pretty_status(item) do
