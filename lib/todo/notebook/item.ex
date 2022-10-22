@@ -6,6 +6,7 @@ defmodule Todo.Notebook.Item do
     field :description, :string
     field :user_id, :id
     field :status, Ecto.Enum, values: [:todo, :done]
+    field :due_date, :date
 
     timestamps()
   end
@@ -13,8 +14,8 @@ defmodule Todo.Notebook.Item do
   @doc false
   def changeset(item, attrs) do
     item
-    |> cast(attrs, [:description, :user_id, :status])
-    |> validate_required([:description, :user_id, :status])
+    |> cast(attrs, [:description, :user_id, :status, :due_date])
+    |> validate_required([:description, :user_id, :status, :due_date])
   end
 
   def pretty_status(item) do

@@ -14,7 +14,8 @@ defmodule Todo.NotebookFixtures do
       attrs
       |> Enum.into(%{
         "description" => "some description",
-        "status" => :done
+        "status" => :done,
+        "due_date" => ~D[2022-10-17]
       })
 
     {:ok, item} = Todo.Notebook.create_item(user_id, combined_attrs)

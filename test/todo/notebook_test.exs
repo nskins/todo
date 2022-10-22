@@ -21,7 +21,12 @@ defmodule Todo.NotebookTest do
     end
 
     test "create_item/1 with valid data creates a item", %{user: user} do
-      valid_attrs = %{ "description" => "some description", "user_id" => user.id, "status" => :todo}
+      valid_attrs = %{
+        "description" => "some description",
+        "user_id" => user.id,
+        "status" => :todo,
+        "due_date" => ~D[2022-10-17]
+      }
 
       assert {:ok, %Item{} = item} = Notebook.create_item(user.id, valid_attrs)
       assert item.description == "some description"

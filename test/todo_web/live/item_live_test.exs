@@ -4,7 +4,12 @@ defmodule TodoWeb.ItemLiveTest do
   import Phoenix.LiveViewTest
   import Todo.NotebookFixtures
 
-  @create_attrs %{description: "some description"}
+  @create_attrs %{
+    description: "some description",
+    status: :todo,
+    due_date: ~D[2022-10-17]
+  }
+
   @update_attrs %{description: "some updated description"}
   @invalid_attrs %{description: nil}
 
