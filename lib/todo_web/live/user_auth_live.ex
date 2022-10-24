@@ -6,6 +6,7 @@ defmodule TodoWeb.UserAuthLive do
     socket =
       socket
       |> assign(:current_user, Accounts.get_user_by_session_token(user_token))
+
     if socket.assigns.current_user do
       {:cont, socket}
     else

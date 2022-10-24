@@ -34,11 +34,21 @@ defmodule Todo.NotebookTest do
     end
 
     test "create_item/1 with invalid description returns error changeset", %{user: user} do
-      assert {:error, %Ecto.Changeset{}} = Notebook.create_item(user.id, %{"description" => nil, "user_id" => user.id, "status" => :todo})
+      assert {:error, %Ecto.Changeset{}} =
+               Notebook.create_item(user.id, %{
+                 "description" => nil,
+                 "user_id" => user.id,
+                 "status" => :todo
+               })
     end
 
     test "create_item/1 with invalid status returns error changeset", %{user: user} do
-      assert {:error, %Ecto.Changeset{}} = Notebook.create_item(user.id, %{"description" => "A valid description", "user_id" => user.id, "status" => :groggle})
+      assert {:error, %Ecto.Changeset{}} =
+               Notebook.create_item(user.id, %{
+                 "description" => "A valid description",
+                 "user_id" => user.id,
+                 "status" => :groggle
+               })
     end
 
     test "update_item/2 with valid description updates the item", %{user: user} do
@@ -59,13 +69,19 @@ defmodule Todo.NotebookTest do
 
     test "update_item/2 with invalid description returns error changeset", %{user: user} do
       item = item_fixture(%{"user_id" => user.id})
-      assert {:error, %Ecto.Changeset{}} = Notebook.update_item(user.id, item, %{"description" => nil, "user_id" => user.id})
+
+      assert {:error, %Ecto.Changeset{}} =
+               Notebook.update_item(user.id, item, %{"description" => nil, "user_id" => user.id})
+
       assert item == Notebook.get_item!(item.id, user.id)
     end
 
     test "update_item/2 with invalid status returns error changeset", %{user: user} do
       item = item_fixture(%{"user_id" => user.id})
-      assert {:error, %Ecto.Changeset{}} = Notebook.update_item(user.id, item, %{"status" => nil, "user_id" => user.id})
+
+      assert {:error, %Ecto.Changeset{}} =
+               Notebook.update_item(user.id, item, %{"status" => nil, "user_id" => user.id})
+
       assert item == Notebook.get_item!(item.id, user.id)
     end
 

@@ -18,8 +18,8 @@ defmodule TodoWeb.ItemLiveTest do
 
     item = item_fixture(%{"user_id" => logged_in_params.user.id})
 
-    logged_in_params |>
-      Enum.into(%{item: item})
+    logged_in_params
+    |> Enum.into(%{item: item})
   end
 
   describe "Index" do

@@ -8,7 +8,7 @@ defmodule Todo.NotebookFixtures do
   Generate a item.
   """
   def item_fixture(attrs \\ %{}) do
-    %{ "user_id" => user_id } = attrs
+    %{"user_id" => user_id} = attrs
 
     combined_attrs =
       attrs
