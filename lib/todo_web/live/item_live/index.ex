@@ -72,14 +72,14 @@ defmodule TodoWeb.ItemLive.Index do
     # performed the action, we will have already reloaded
     # the items from the update/delete event.
     case index do
-      nil -> items
+      nil ->
+        items
+
       i ->
         case operation do
           :replace -> List.replace_at(items, i, item)
           :remove -> List.delete_at(items, i)
         end
     end
-
-
   end
 end
