@@ -121,3 +121,12 @@
   100% { opacity: 0; }
 }
 
+.due-past {
+  color: red;
+  font-weight: bold;
+}
+
+.due-current {
+  color: orange;
+  font-weight: bold;
+}
