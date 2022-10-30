@@ -3,15 +3,9 @@
     <div><%= @item.description %></div>
     <div class='mt-1'>
       <strong>Due</strong>
-      <%= if ItemComponent.compare_date(@item.due_date) === 0  do %>
-        <span class="due-current"> <%= Todo.Date.pretty_date(@item.due_date) %></span>
-      <% end %>
-      <%= if ItemComponent.compare_date(@item.due_date) === -1 do %>
-        <span class="due-past"> <%= Todo.Date.pretty_date(@item.due_date) %></span>
-      <% end %>
-      <%= if ItemComponent.compare_date(@item.due_date) === 1 do %>
-        <span> <%= Todo.Date.pretty_date(@item.due_date) %></span>
-      <% end %> 
+      <span class={ItemComponent.compare_date(@item.due_date)}> 
+        <%= Todo.Date.pretty_date(@item.due_date) %>
+      </span>
     </div>
   </div>
   <div class='flex flex-row grow'>
