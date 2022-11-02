@@ -49,15 +49,15 @@ defmodule TodoWeb.ItemLive.Index do
   end
 
   @impl true
-  def handle_info({:item_created, user_id, _}, socket) do
+  def handle_info({:item_created, user_id}, socket) do
     {:noreply, update(socket, :items, fn _ -> list_items(user_id) end)}
   end
 
-  def handle_info({:item_updated, user_id, _}, socket) do
+  def handle_info({:item_updated, user_id}, socket) do
     {:noreply, update(socket, :items, fn _ -> list_items(user_id) end)}
   end
 
-  def handle_info({:item_deleted, user_id, _}, socket) do
+  def handle_info({:item_deleted, user_id}, socket) do
     {:noreply, update(socket, :items, fn _ -> list_items(user_id) end)}
   end
 

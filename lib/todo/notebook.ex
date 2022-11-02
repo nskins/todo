@@ -158,7 +158,7 @@ defmodule Todo.Notebook do
   defp broadcast({:error, _reason} = error, _event), do: error
 
   defp broadcast({:ok, item}, {event, user_id}) do
-    Phoenix.PubSub.broadcast(Todo.PubSub, items_topic(user_id), {event, user_id, item})
+    Phoenix.PubSub.broadcast(Todo.PubSub, items_topic(user_id), {event, user_id})
     {:ok, item}
   end
 end
