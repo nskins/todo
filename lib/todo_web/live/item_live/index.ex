@@ -10,11 +10,12 @@ defmodule TodoWeb.ItemLive.Index do
 
     if connected?(socket), do: Notebook.subscribe(user_id)
 
-    local_date = Timex.local |> Timex.to_date
+    local_date = Timex.local() |> Timex.to_date()
 
-    socket = socket
-    |> assign(:local_date, local_date)
-    |> assign(:items, list_items(user_id))
+    socket =
+      socket
+      |> assign(:local_date, local_date)
+      |> assign(:items, list_items(user_id))
 
     {:ok, socket}
   end
