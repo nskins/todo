@@ -89,6 +89,48 @@ defmodule TodoWeb.UserSettingsControllerTest do
     end
   end
 
+  describe "PUT /users/settings (change timezone form)" do
+    test "updates the user timezone and resets tokens", %{conn: conn, user: user} do
+      new_conn =
+        put(conn, Routes.user_settings_path(conn, :update), %{
+          "action" => "update_timezone",
+          "current_password" => valid_user_password(),
+          "user" => %{
+            "timezone" => "America/Phoenix"
+          }
+        })
+
+      assert redirected_to(new_conn) == Routes.user_settings_path(conn, :edit)
+      assert get_session(new_conn, :user_token) != get_session(conn, :user_token)
+      assert get_flash(new_conn, :info) =~ "Timezone updated successfully"
+
+      new_user = Accounts.get_user_by_email(user.email)
+
+      assert new_user.timezone == "America/Phoenix"
+    end
+
+    test "does not update timezone on invalid data", %{conn: conn, user: user} do
+      new_conn =
+        put(conn, Routes.user_settings_path(conn, :update), %{
+          "action" => "update_timezone",
+          "current_password" => "invalid",
+          "user" => %{
+            "timezone" => "America/Phoenix"
+          }
+        })
+
+      response = html_response(new_conn, 200)
+      assert response =~ "<h1>Settings</h1>"
+      assert response =~ "is not valid"
+
+      assert get_session(new_conn, :user_token) == get_session(conn, :user_token)
+
+      new_user = Accounts.get_user_by_email(user.email)
+
+      assert new_user.timezone == nil
+    end
+  end
+
   describe "GET /users/settings/confirm_email/:token" do
     setup %{user: user} do
       email = unique_user_email()
