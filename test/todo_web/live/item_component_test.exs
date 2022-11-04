@@ -1,7 +1,6 @@
 defmodule TodoWeb.ItemComponentTest do
-
   use ExUnit.Case, async: true
-  
+
   setup_all do
     timezone = "America/Phoenix"
     today = Timex.today(timezone)
@@ -21,7 +20,8 @@ defmodule TodoWeb.ItemComponentTest do
     end
 
     test "should return a bold orange style for an item due today", context do
-      assert ItemComponent.compare_date(context[:today], context[:timezone]) == "font-bold text-orange-500"
+      assert ItemComponent.compare_date(context[:today], context[:timezone]) ==
+               "font-bold text-orange-500"
     end
 
     test "should return no style for an item due in the future", context do

@@ -103,7 +103,7 @@ defmodule Todo.Accounts.User do
     |> validate_confirmation(:password, message: "does not match password")
     |> validate_password(opts)
   end
-  
+
   @doc """
   A user changeset for changing the timezone.
 
@@ -117,7 +117,6 @@ defmodule Todo.Accounts.User do
       %{} = changeset -> add_error(changeset, :timezone, "did not change")
     end
   end
- 
 
   @doc """
   Confirms the account by setting `confirmed_at`.

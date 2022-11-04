@@ -214,7 +214,7 @@ defmodule Todo.Accounts do
       {:error, :user, changeset, _} -> {:error, changeset}
     end
   end
-  
+
   @doc """
   Returns an `%Ecto.Changeset{}` for changing the user timezone.
 
@@ -255,7 +255,7 @@ defmodule Todo.Accounts do
       {:error, :user, changeset, _} -> {:error, changeset}
     end
   end
-  
+
   ## Session
 
   @doc """

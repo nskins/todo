@@ -49,7 +49,7 @@ defmodule TodoWeb.UserSettingsController do
         render(conn, "edit.html", password_changeset: changeset)
     end
   end
-  
+
   def update(conn, %{"action" => "update_timezone"} = params) do
     %{"current_password" => password, "user" => user_params} = params
     user = conn.assigns.current_user
@@ -65,7 +65,6 @@ defmodule TodoWeb.UserSettingsController do
         render(conn, "edit.html", timezone_changeset: changeset)
     end
   end
-
 
   def confirm_email(conn, %{"token" => token}) do
     case Accounts.update_user_email(conn.assigns.current_user, token) do
