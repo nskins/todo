@@ -7,6 +7,7 @@ defmodule Todo.Accounts.User do
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
+    field :timezone, :string
 
     timestamps()
   end
@@ -102,6 +103,21 @@ defmodule Todo.Accounts.User do
     |> validate_confirmation(:password, message: "does not match password")
     |> validate_password(opts)
   end
+  
+  @doc """
+  A user changeset for changing the timezone.
+
+  It requires the timezone to change otherwise an error is added.
+  """
+  def timezone_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:timezone])
+    |> case do
+      %{changes: %{timezone: _}} = changeset -> changeset
+      %{} = changeset -> add_error(changeset, :timezone, "did not change")
+    end
+  end
+ 
 
   @doc """
   Confirms the account by setting `confirmed_at`.
