@@ -2,7 +2,9 @@ defmodule ItemComponent do
   use TodoWeb, :live_component
   alias Todo.Notebook.Item
 
-  def compare_date(due_date, local_date) do
+  def compare_date(due_date, timezone) do
+    local_date = Timex.now(timezone)
+
     val = Date.compare(due_date, local_date)
 
     case val do

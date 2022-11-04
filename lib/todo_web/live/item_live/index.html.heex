@@ -19,7 +19,7 @@
 
   <div id="items" phx-update="replace" class='flex flex-row flex-wrap justify-center w-full'>
     <%= for item <- @items do %>
-      <.live_component module={ItemComponent} id={"item-#{item.id}"} item={item} local_date={@local_date} />
+      <.live_component module={ItemComponent} id={"item-#{item.id}"} item={item} timezone={@current_user.timezone} />
     <% end %>
   </div>
 </section>
