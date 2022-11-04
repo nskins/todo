@@ -51,3 +51,26 @@
     <%= submit "Change password" %>
   </div>
 </.form>
+
+<.form let={f} for={@timezone_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_timezone">
+  <%= if @timezone_changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <%= hidden_input f, :action, name: "action", value: "update_timezone" %>
+
+  <%= label f, :timezone %>
+  <%= select f, :timezone, options: Timex.timezones() %>
+  <%= error_tag f, :timezone %>
+
+  <%= label f, :current_password, for: "current_password_for_timezone" %>
+  <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_timezone" %>
+  <%= error_tag f, :current_password %>
+
+  <div>
+    <%= submit "Change timezone" %>
+  </div>
+</.form>
+
