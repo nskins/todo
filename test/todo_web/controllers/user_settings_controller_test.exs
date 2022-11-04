@@ -88,6 +88,27 @@ defmodule TodoWeb.UserSettingsControllerTest do
       assert response =~ "is not valid"
     end
   end
+  
+  describe "PUT /users/settings (change timezone form)" do
+    test "updates the user timezone and resets tokens", %{conn: conn, user: user} do
+      new_password_conn =
+        put(conn, Routes.user_settings_path(conn, :update), %{
+          "action" => "update_timezone",
+          "current_password" => valid_user_password(),
+          "user" => %{
+            "timezone" => "America/Phoenix",
+          }
+        })
+
+      assert redirected_to(new_password_conn) == Routes.user_settings_path(conn, :edit)
+      assert get_session(new_password_conn, :user_token) != get_session(conn, :user_token)
+      assert get_flash(new_password_conn, :info) =~ "Timezone updated successfully"
+      
+      new_user = Accounts.get_user_by_email(user.email)
+
+      assert new_user.timezone == "America/Phoenix"
+    end
+  end
 
   describe "GET /users/settings/confirm_email/:token" do
     setup %{user: user} do
