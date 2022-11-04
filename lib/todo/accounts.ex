@@ -214,7 +214,48 @@ defmodule Todo.Accounts do
       {:error, :user, changeset, _} -> {:error, changeset}
     end
   end
+  
+  @doc """
+  Returns an `%Ecto.Changeset{}` for changing the user timezone.
 
+  ## Examples
+
+      iex> change_user_timezone(user)
+      %Ecto.Changeset{data: %User{}}
+
+  """
+  def change_user_timezone(user, attrs \\ %{}) do
+    User.timezone_changeset(user, attrs)
+  end
+
+  @doc """
+  Updates the user timezone.
+
+  ## Examples
+
+      iex> update_user_timezone(user, "valid password", %{password: ...})
+      {:ok, %User{}}
+
+      iex> update_user_timezone(user, "invalid password", %{password: ...})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_user_timezone(user, password, attrs) do
+    changeset =
+      user
+      |> User.timezone_changeset(attrs)
+      |> User.validate_current_password(password)
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.update(:user, changeset)
+    |> Ecto.Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, :all))
+    |> Repo.transaction()
+    |> case do
+      {:ok, %{user: user}} -> {:ok, user}
+      {:error, :user, changeset, _} -> {:error, changeset}
+    end
+  end
+  
   ## Session
 
   @doc """
