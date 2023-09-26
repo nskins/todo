@@ -31,9 +31,14 @@ defmodule TodoWeb.ItemLive.Index do
   end
 
   defp apply_action(socket, :new, _params) do
+    # Default the new item's due date to today.
+    timezone = socket.assigns.current_user.timezone
+    today = DateTime.to_date(Timex.now(timezone))
+    item = %Item{due_date: today}
+
     socket
     |> assign(:page_title, "New Item")
-    |> assign(:item, %Item{})
+    |> assign(:item, item)
   end
 
   defp apply_action(socket, :index, _params) do
