@@ -31,8 +31,13 @@ defmodule TodoWeb.ItemLive.Index do
   end
 
   defp apply_action(socket, :new, _params) do
+    # Default to UTC if the user hasn't set the timezone setting.
+    timezone = case socket.assigns.current_user.timezone do
+      nil -> "UTC"
+      tz -> tz
+    end
+
     # Default the new item's due date to today.
-    timezone = socket.assigns.current_user.timezone
     today = DateTime.to_date(Timex.now(timezone))
     item = %Item{due_date: today}
 
