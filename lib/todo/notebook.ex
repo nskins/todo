@@ -21,7 +21,7 @@ defmodule Todo.Notebook do
     query =
       from i in Item,
         where: i.user_id == ^user_id,
-        order_by: [desc: i.status, asc: i.due_date]
+        order_by: [desc: i.status, asc: i.due_date, asc: i.description]
 
     Repo.all(query)
   end
